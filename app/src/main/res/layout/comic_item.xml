@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:orientation="vertical"
+    android:background="@color/colorLightGray"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            >
+            <ImageView
+                android:id="@+id/image_cover"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                tools:src="@drawable/placeholder"
+                android:layout_gravity="center"
+                />
+            
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Spider-Man #001"
+            android:maxLines="1"
+            android:paddingTop="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/colorDarkGray"
+            />
+        <TextView
+            android:id="@+id/text_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="$ 1,99"
+            android:textSize="18sp"
+            android:textColor="@color/colorGrayAlt"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right|top"
+        android:src="@drawable/ic_jewel_background"
+        app:tint="@color/colorPrimary" />
+
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_jewel"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        />
+</FrameLayout>

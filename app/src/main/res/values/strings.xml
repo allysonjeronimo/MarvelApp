@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MarvelApp</string>
+
+    <!-- ComicListFragment -->
+    <string name="comic_list_title">Comics</string>
+
 </resources>
