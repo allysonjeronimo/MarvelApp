@@ -3,15 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.comiclist.ComicListFragment"
-    android:layout_marginEnd="8dp"
-    >
+    android:layout_marginEnd="12dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_comics"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/comic_item"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        android:visibility="visible"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminateTint="@color/colorPrimary"
         />
 
 </FrameLayout>

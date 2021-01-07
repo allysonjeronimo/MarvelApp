@@ -3,5 +3,5 @@
 
     <!-- ComicListFragment -->
     <string name="comic_list_title">Comics</string>
-
+    <string name="comic_list_error_on_loading">There was an error when loading comics</string>
 </resources>

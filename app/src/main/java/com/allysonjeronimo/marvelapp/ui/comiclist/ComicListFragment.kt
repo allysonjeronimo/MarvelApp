@@ -7,27 +7,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.createViewModelLazy
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.allysonjeronimo.marvelapp.MainActivity
 import com.allysonjeronimo.marvelapp.R
 import com.allysonjeronimo.marvelapp.data.remote.MarvelApi
 import com.allysonjeronimo.marvelapp.repository.MarvelApiRepository
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.comic_list_fragment.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ComicListFragment : Fragment(R.layout.comic_list_fragment) {
 
-    private lateinit var viewModel: ComicListViewModel
+    private lateinit var viewModel:ComicListViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        recycler_view_comics.layoutManager = GridLayoutManager(requireContext(), 2)
-        loadComics()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        createViewModel()
+        observeEvents()
     }
 
-    private fun loadComics(){
-
+    private fun createViewModel(){
         val retrofit = Retrofit
             .Builder()
             .baseUrl("https://gateway.marvel.com/v1/public/")
@@ -36,11 +39,43 @@ class ComicListFragment : Fragment(R.layout.comic_list_fragment) {
 
         val repository = MarvelApiRepository(retrofit.create(MarvelApi::class.java))
 
-        repository.allComics({
-            recycler_view_comics.adapter = ComicListAdapter(it)
-        }, {
-            Log.i(MainActivity::class.simpleName, "Falhou miseravelmente!")
+        viewModel = ViewModelProvider(
+            this,
+            ComicListViewModel.ComicListViewModelFactory(repository)
+        ).get(ComicListViewModel::class.java)
+    }
+
+    private fun observeEvents(){
+        viewModel.comicsLiveData().observe(this.viewLifecycleOwner, {
+            comics -> recycler_view_comics.adapter = ComicListAdapter(comics)
         })
+        viewModel.isLoadingsLiveData().observe(this.viewLifecycleOwner, {
+            isLoading ->
+            if(isLoading)
+                showProgress()
+            else
+                hideProgress()
+
+        })
+        viewModel.errorMessageLiveData().observe(this.viewLifecycleOwner, {
+            stringResource ->
+            Snackbar.make(requireView(), stringResource, Snackbar.LENGTH_SHORT).show()
+        })
+    }
+
+    private fun hideProgress() {
+        progress_bar.visibility = View.GONE
+        recycler_view_comics.visibility = View.VISIBLE
+    }
+
+    private fun showProgress() {
+        progress_bar.visibility = View.VISIBLE
+        recycler_view_comics.visibility = View.GONE
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.loadComics()
     }
 
 }

@@ -37,7 +37,8 @@ class ComicListAdapter(
         fun bind(comic:Comic){
             textTitle.text = comic.title
             textPrice.text = comic.firstPrice().currencyFormat().toString()
-            imageCover.load("${comic.thumbnail.path}/portrait_medium.${comic.thumbnail.extension}")
+            Log.i(ComicListAdapter::class.simpleName, "${comic.thumbnail.path}/portrait_xlarge.${comic.thumbnail.extension}")
+            imageCover.load("${comic.thumbnail.path}/portrait_xlarge.${comic.thumbnail.extension}")
         }
     }
 }
