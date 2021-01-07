@@ -2,16 +2,13 @@ package com.allysonjeronimo.marvelapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.allysonjeronimo.marvelapp.data.remote.MarvelApi
-import com.allysonjeronimo.marvelapp.repository.MarvelApiRepository
 import kotlinx.android.synthetic.main.toolbar.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +36,13 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(this.appBarConfiguration) || super.onSupportNavigateUp()
     }
 
 }

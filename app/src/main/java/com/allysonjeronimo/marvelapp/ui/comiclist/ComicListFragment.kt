@@ -10,10 +10,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.createViewModelLazy
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.allysonjeronimo.marvelapp.MainActivity
 import com.allysonjeronimo.marvelapp.R
+import com.allysonjeronimo.marvelapp.data.entity.Comic
 import com.allysonjeronimo.marvelapp.data.remote.MarvelApi
+import com.allysonjeronimo.marvelapp.extensions.navigateWithAnimations
 import com.allysonjeronimo.marvelapp.repository.MarvelApiRepository
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.comic_list_fragment.*
@@ -47,7 +50,7 @@ class ComicListFragment : Fragment(R.layout.comic_list_fragment) {
 
     private fun observeEvents(){
         viewModel.comicsLiveData().observe(this.viewLifecycleOwner, {
-            comics -> recycler_view_comics.adapter = ComicListAdapter(comics)
+            comics -> recycler_view_comics.adapter = ComicListAdapter(comics, this::onClickListener)
         })
         viewModel.isLoadingsLiveData().observe(this.viewLifecycleOwner, {
             isLoading ->
@@ -61,6 +64,10 @@ class ComicListFragment : Fragment(R.layout.comic_list_fragment) {
             stringResource ->
             Snackbar.make(requireView(), stringResource, Snackbar.LENGTH_SHORT).show()
         })
+    }
+
+    private fun onClickListener(comic: Comic){
+        findNavController().navigateWithAnimations(R.id.comicDetailsFragment)
     }
 
     private fun hideProgress() {

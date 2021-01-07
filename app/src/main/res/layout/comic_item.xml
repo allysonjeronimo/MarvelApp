@@ -8,6 +8,8 @@
     android:layout_marginStart="12dp"
     android:orientation="vertical"
     android:background="@color/colorLightGray"
+    android:clickable="true"
+    android:focusable="true"
     >
 
     <LinearLayout
@@ -15,8 +17,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        android:clickable="true"
-        android:focusable="true"
         android:background="?attr/selectableItemBackground"
         >
         <FrameLayout

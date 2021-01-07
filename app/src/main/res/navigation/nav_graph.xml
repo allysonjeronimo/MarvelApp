@@ -11,4 +11,10 @@
         android:label="@string/comic_list_title"
         tools:layout="@layout/comic_list_fragment" />
 
+    <fragment
+        android:id="@+id/comicDetailsFragment"
+        android:name="com.allysonjeronimo.marvelapp.ui.comicdetails.ComicDetailsFragment"
+        android:label="@string/comic_details_title"
+        tools:layout="@layout/comic_details_fragment" />
+
 </navigation>

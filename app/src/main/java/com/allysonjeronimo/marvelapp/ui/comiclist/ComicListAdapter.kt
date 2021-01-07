@@ -13,7 +13,8 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.comic_item.view.*
 
 class ComicListAdapter(
-    private val comics:List<Comic>
+    private val comics:List<Comic>,
+    private val onClickListener: (Comic) -> Unit
 ) : RecyclerView.Adapter<ComicListAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,6 +25,9 @@ class ComicListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(comics[position])
+        holder.itemView.setOnClickListener {
+            onClickListener(comics[position])
+        }
     }
 
     override fun getItemCount() = comics.size
