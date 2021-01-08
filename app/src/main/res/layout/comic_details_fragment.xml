@@ -8,6 +8,23 @@
     android:orientation="vertical"
     >
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/view_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +32,7 @@
         >
 
         <ImageView
-            android:id="@+id/image_cover"
+            android:id="@+id/image_detail_cover"
             android:layout_width="168dp"
             android:layout_height="252dp"
             android:src="@drawable/placeholder"
@@ -50,11 +67,11 @@
                     />
 
                 <TextView
-                    android:id="@+id/text_released_date"
+                    android:id="@+id/text_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/comic_details_released_date"
-                    android:maxLines="2"
+                    android:text="@string/comic_details_number"
+                    android:maxLines="1"
                     android:layout_marginTop="8dp"
                     android:textSize="14sp"
                     android:textColor="@color/colorGray"
@@ -65,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/comic_details_pages"
-                    android:maxLines="2"
+                    android:maxLines="1"
                     android:textSize="14sp"
                     android:textColor="@color/colorGray"
                     />
@@ -94,7 +111,7 @@
                 android:id="@+id/button_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/selector_button_red"
                 android:text="$ 1,99"
                 android:textSize="18sp"
                 android:textColor="#fff"
@@ -150,4 +167,5 @@
         android:textAlignment="textStart"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         />
+    </LinearLayout>
 </LinearLayout>

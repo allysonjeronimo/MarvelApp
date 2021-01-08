@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.createViewModelLazy
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.allysonjeronimo.marvelapp.MainActivity
 import com.allysonjeronimo.marvelapp.R
 import com.allysonjeronimo.marvelapp.data.entity.Comic
+import com.allysonjeronimo.marvelapp.data.remote.BASE_URL
 import com.allysonjeronimo.marvelapp.data.remote.MarvelApi
 import com.allysonjeronimo.marvelapp.extensions.navigateWithAnimations
 import com.allysonjeronimo.marvelapp.repository.MarvelApiRepository
@@ -36,7 +38,7 @@ class ComicListFragment : Fragment(R.layout.comic_list_fragment) {
     private fun createViewModel(){
         val retrofit = Retrofit
             .Builder()
-            .baseUrl("https://gateway.marvel.com/v1/public/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -67,7 +69,8 @@ class ComicListFragment : Fragment(R.layout.comic_list_fragment) {
     }
 
     private fun onClickListener(comic: Comic){
-        findNavController().navigateWithAnimations(R.id.comicDetailsFragment)
+        val bundle = bundleOf("comicId" to comic.id)
+        findNavController().navigateWithAnimations(R.id.comicDetailsFragment, bundle)
     }
 
     private fun hideProgress() {

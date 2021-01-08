@@ -6,4 +6,5 @@ interface MarvelRepository {
 
     fun allComics(success:(List<Comic>) -> Unit, failure:() -> Unit)
 
+    fun findComic(id:Int, success: (Comic?) -> Unit, failure: () -> Unit)
 }

@@ -15,6 +15,11 @@
         android:id="@+id/comicDetailsFragment"
         android:name="com.allysonjeronimo.marvelapp.ui.comicdetails.ComicDetailsFragment"
         android:label="@string/comic_details_title"
-        tools:layout="@layout/comic_details_fragment" />
+        tools:layout="@layout/comic_details_fragment" >
+        <argument
+            android:name="comicId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 
 </navigation>

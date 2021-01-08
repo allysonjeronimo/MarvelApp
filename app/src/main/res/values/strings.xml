@@ -11,7 +11,10 @@
     <string name="comic_details_summary">Summary</string>
     <string name="comic_details_creators">Creators</string>
     <string name="comic_details_pages">Pages: %s</string>
-    <string name="comic_details_released_date">Released: %s</string>
+    <string name="comic_details_number">Number: #%s</string>
+    <string name="comic_detauls_text_not_found">Not found</string>
+    <string name="comic_details_error_not_found">Selected comic not found</string>
+    <string name="comic_details_error_on_loading">There was an error when loading the selected comic</string>
 
 
 </resources>

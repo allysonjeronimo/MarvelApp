@@ -1,5 +1,6 @@
 package com.allysonjeronimo.marvelapp.extensions
 
+import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.allysonjeronimo.marvelapp.R
@@ -18,7 +19,8 @@ private val slideLeftOptions = NavOptions.Builder()
 
 fun NavController.navigateWithAnimations(
     destinationId:Int,
+    args: Bundle? = null,
     animation: NavOptions = slideLeftOptions
 ){
-    this.navigate(destinationId, null, animation)
+    this.navigate(destinationId, args, animation)
 }
