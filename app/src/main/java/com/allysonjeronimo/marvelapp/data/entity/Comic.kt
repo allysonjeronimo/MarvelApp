@@ -8,7 +8,9 @@ data class Comic(
     val isbn:String,
     val pageCount:Int,
     val thumbnail: Thumbnail,
-    val prices:List<Price>
+    val prices:List<Price>,
+    val creators:CreatorList,
+    val dates:List<ComicDate>
 ){
 
     fun firstPrice() : Double{

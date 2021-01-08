@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="12dp"
-    android:layout_marginStart="12dp"
+    android:layout_margin="6dp"
     android:orientation="vertical"
-    android:background="@color/colorLightGray"
+    android:background="@color/colorLightGrayAlt"
     android:clickable="true"
     android:focusable="true"
     >
@@ -58,7 +57,7 @@
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_gravity="right|bottom"
-        android:background="@drawable/shape_rounded_corners_red"
+        android:background="@drawable/shape_rounded_top_left_red"
         android:orientation="vertical"
         android:padding="7dp"
         >
