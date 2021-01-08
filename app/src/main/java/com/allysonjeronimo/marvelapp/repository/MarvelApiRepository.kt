@@ -1,10 +1,10 @@
 package com.allysonjeronimo.marvelapp.repository
 
-import com.allysonjeronimo.marvelapp.data.entity.Comic
-import com.allysonjeronimo.marvelapp.data.entity.Response
-import com.allysonjeronimo.marvelapp.data.remote.MarvelApi
-import com.allysonjeronimo.marvelapp.data.remote.PRIVATE_KEY
-import com.allysonjeronimo.marvelapp.data.remote.PUBLIC_KEY
+import com.allysonjeronimo.marvelapp.data.network.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.entity.Response
+import com.allysonjeronimo.marvelapp.data.network.MarvelApi
+import com.allysonjeronimo.marvelapp.data.network.PRIVATE_KEY
+import com.allysonjeronimo.marvelapp.data.network.PUBLIC_KEY
 import com.allysonjeronimo.marvelapp.extensions.toMD5
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,7 +18,6 @@ class MarvelApiRepository(
 
         val timestamp = (Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L).toString()
         val hash = "$timestamp$PRIVATE_KEY$PUBLIC_KEY".toMD5()
-
         val response = api.allComics(timeStamp = timestamp, apiKey = PUBLIC_KEY, hash = hash)
 
         response.enqueue(object : Callback<Response> {
@@ -43,7 +42,6 @@ class MarvelApiRepository(
 
         val timestamp = (Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L).toString()
         val hash = "$timestamp$PRIVATE_KEY$PUBLIC_KEY".toMD5()
-
         val response = api.findComic(comicId = id, timeStamp = timestamp, apiKey = PUBLIC_KEY, hash = hash)
 
         response.enqueue(object: Callback<Response>{

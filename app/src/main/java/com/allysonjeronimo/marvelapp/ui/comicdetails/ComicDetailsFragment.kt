@@ -5,9 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.allysonjeronimo.marvelapp.R
-import com.allysonjeronimo.marvelapp.data.entity.Comic
-import com.allysonjeronimo.marvelapp.data.remote.BASE_URL
-import com.allysonjeronimo.marvelapp.data.remote.MarvelApi
+import com.allysonjeronimo.marvelapp.data.network.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.BASE_URL
+import com.allysonjeronimo.marvelapp.data.network.MarvelApi
 import com.allysonjeronimo.marvelapp.extensions.currencyFormat
 import com.allysonjeronimo.marvelapp.extensions.load
 import com.allysonjeronimo.marvelapp.repository.MarvelApiRepository

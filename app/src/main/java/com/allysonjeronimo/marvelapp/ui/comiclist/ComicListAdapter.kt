@@ -1,15 +1,13 @@
 package com.allysonjeronimo.marvelapp.ui.comiclist
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.allysonjeronimo.marvelapp.R
-import com.allysonjeronimo.marvelapp.data.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.entity.Comic
 import com.allysonjeronimo.marvelapp.extensions.currencyFormat
 import com.allysonjeronimo.marvelapp.extensions.load
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.comic_item.view.*
 
 class ComicListAdapter(

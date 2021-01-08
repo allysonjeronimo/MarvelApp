@@ -22,4 +22,11 @@
             android:defaultValue="0" />
     </fragment>
 
+    <fragment
+        android:id="@+id/shoppingCartFragment"
+        android:name="com.allysonjeronimo.marvelapp.ui.shoppingcart.ShoppingCartFragment"
+        android:label="@string/shopping_cart_title"
+        tools:layout="@layout/shopping_cart_fragment"/>
+
+
 </navigation>

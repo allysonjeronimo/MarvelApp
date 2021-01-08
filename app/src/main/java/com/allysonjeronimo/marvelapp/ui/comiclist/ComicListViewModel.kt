@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.allysonjeronimo.marvelapp.R
-import com.allysonjeronimo.marvelapp.data.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.entity.Comic
 import com.allysonjeronimo.marvelapp.repository.MarvelRepository
 
 class ComicListViewModel(

@@ -1,6 +1,6 @@
 package com.allysonjeronimo.marvelapp.repository
 
-import com.allysonjeronimo.marvelapp.data.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.entity.Comic
 
 interface MarvelRepository {
 

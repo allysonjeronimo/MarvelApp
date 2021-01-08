@@ -1,6 +1,6 @@
-package com.allysonjeronimo.marvelapp.data.remote
+package com.allysonjeronimo.marvelapp.data.network
 
-import com.allysonjeronimo.marvelapp.data.entity.Response
+import com.allysonjeronimo.marvelapp.data.network.entity.Response
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

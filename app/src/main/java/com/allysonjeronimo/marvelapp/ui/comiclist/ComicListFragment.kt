@@ -1,23 +1,15 @@
 package com.allysonjeronimo.marvelapp.ui.comiclist
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.createViewModelLazy
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import com.allysonjeronimo.marvelapp.MainActivity
 import com.allysonjeronimo.marvelapp.R
-import com.allysonjeronimo.marvelapp.data.entity.Comic
-import com.allysonjeronimo.marvelapp.data.remote.BASE_URL
-import com.allysonjeronimo.marvelapp.data.remote.MarvelApi
+import com.allysonjeronimo.marvelapp.data.network.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.BASE_URL
+import com.allysonjeronimo.marvelapp.data.network.MarvelApi
 import com.allysonjeronimo.marvelapp.extensions.navigateWithAnimations
 import com.allysonjeronimo.marvelapp.repository.MarvelApiRepository
 import com.google.android.material.snackbar.Snackbar
