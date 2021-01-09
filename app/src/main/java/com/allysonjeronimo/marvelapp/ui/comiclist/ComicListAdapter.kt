@@ -5,14 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.allysonjeronimo.marvelapp.R
+import com.allysonjeronimo.marvelapp.data.db.entity.Comic
 import com.allysonjeronimo.marvelapp.data.network.entity.ComicData
 import com.allysonjeronimo.marvelapp.extensions.currencyFormat
 import com.allysonjeronimo.marvelapp.extensions.load
 import kotlinx.android.synthetic.main.comic_item.view.*
 
 class ComicListAdapter(
-    private val comics:List<ComicData>,
-    private val onClickListener: (ComicData) -> Unit
+    private val comics:List<Comic>,
+    private val onClickListener: (Comic) -> Unit
 ) : RecyclerView.Adapter<ComicListAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,10 +37,10 @@ class ComicListAdapter(
         private val imageCover = itemView.image_cover
         private val textPrice = itemView.text_price
 
-        fun bind(comic:ComicData){
+        fun bind(comic:Comic){
             textTitle.text = comic.title
-            textPrice.text = comic.firstPrice().currencyFormat().toString()
-            imageCover.load("${comic.thumbnail.path}/portrait_xlarge.${comic.thumbnail.extension}")
+            textPrice.text = comic.price.currencyFormat()
+            imageCover.load("${comic.thumbnailPath}/portrait_xlarge.${comic.thumbnailExtension}")
         }
     }
 }

@@ -5,18 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.allysonjeronimo.marvelapp.R
-import com.allysonjeronimo.marvelapp.data.network.entity.ComicData
-import com.allysonjeronimo.marvelapp.repository.MarvelRepository
+import com.allysonjeronimo.marvelapp.data.db.entity.Comic
+import com.allysonjeronimo.marvelapp.repository.ComicRepository
 
 class ComicListViewModel(
-    private val repository : MarvelRepository
+    private val repository : ComicRepository
 ) : ViewModel() {
 
-    private var comicsLiveData = MutableLiveData<List<ComicData>>()
+    private var comicsLiveData = MutableLiveData<List<Comic>>()
     private var isLoadingLiveData = MutableLiveData<Boolean>()
     private var errorMessageLiveData = MutableLiveData<Int>()
 
-    fun comicsLiveData() = comicsLiveData as LiveData<List<ComicData>>
+    fun comicsLiveData() = comicsLiveData as LiveData<List<Comic>>
     fun isLoadingsLiveData() = isLoadingLiveData as LiveData<Boolean>
     fun errorMessageLiveData() = errorMessageLiveData as LiveData<Int>
 
@@ -32,7 +32,7 @@ class ComicListViewModel(
     }
 
     class ComicListViewModelFactory(
-        private val repository: MarvelRepository
+        private val repository: ComicRepository
     ) : ViewModelProvider.Factory{
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return ComicListViewModel(repository) as T

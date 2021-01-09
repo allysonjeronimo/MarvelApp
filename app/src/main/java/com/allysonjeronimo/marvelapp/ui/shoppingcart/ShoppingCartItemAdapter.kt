@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.allysonjeronimo.marvelapp.R
 import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartItem
+import com.allysonjeronimo.marvelapp.extensions.currencyFormat
 import com.allysonjeronimo.marvelapp.extensions.load
 import kotlinx.android.synthetic.main.shopping_cart_item_item.view.*
 
@@ -34,7 +35,7 @@ class ShoppingCartItemAdapter(
         fun bind(item:ShoppingCartItem){
             textTitle.text = item.comic.title
             textSubtotal.text = item.subtotal().currencyFormat()
-            imageCover.load("${item.comic.thumbnail.path}/portrait_small.${item.comic.thumbnail.extension}")
+            imageCover.load("${item.comic.thumbnailPath}/portrait_small.${item.comic.thumbnailExtension}")
         }
     }
 }

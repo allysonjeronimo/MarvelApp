@@ -5,13 +5,12 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.allysonjeronimo.marvelapp.R
-import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartItem
-import com.allysonjeronimo.marvelapp.data.network.entity.ComicData
+import com.allysonjeronimo.marvelapp.data.db.entity.Comic
 import com.allysonjeronimo.marvelapp.data.network.BASE_URL
 import com.allysonjeronimo.marvelapp.data.network.MarvelApi
 import com.allysonjeronimo.marvelapp.extensions.currencyFormat
 import com.allysonjeronimo.marvelapp.extensions.load
-import com.allysonjeronimo.marvelapp.repository.MarvelApiRepository
+import com.allysonjeronimo.marvelapp.repository.ComicDataRepository
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.comic_details_fragment.*
 import retrofit2.Retrofit
@@ -45,7 +44,7 @@ class ComicDetailsFragment : Fragment(R.layout.comic_details_fragment) {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val repository = MarvelApiRepository(retrofit.create(MarvelApi::class.java))
+        val repository = ComicDataRepository(retrofit.create(MarvelApi::class.java))
 
         viewModel = ViewModelProvider(
             this,
@@ -79,14 +78,14 @@ class ComicDetailsFragment : Fragment(R.layout.comic_details_fragment) {
         view_details.visibility = View.GONE
     }
 
-    private fun showComicDetails(comic: ComicData) {
+    private fun showComicDetails(comic: Comic) {
         text_title.text = comic.title
         text_number.text = resources.getString(R.string.comic_details_number, comic.issueNumber.toString())
         text_pages.text = resources.getString(R.string.comic_details_pages, comic.pageCount.toString())
-        text_creators.text = comic.creators.creatorsString()
+        text_creators.text = comic.creators
         text_summary.text = comic.description ?: resources.getString(R.string.comic_detauls_text_not_found)
-        button_add.text = comic.firstPrice().currencyFormat().toString()
-        image_detail_cover.load("${comic.thumbnail.path}/portrait_fantastic.${comic.thumbnail.extension}")
+        button_add.text = comic.price.currencyFormat().toString()
+        image_detail_cover.load("${comic.thumbnailPath}/portrait_fantastic.${comic.thumbnailExtension}")
     }
 
     override fun onStart() {

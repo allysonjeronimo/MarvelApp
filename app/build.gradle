@@ -65,9 +65,6 @@ dependencies {
     // Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
 
-    // Paging Library
-    implementation "androidx.paging:paging-runtime:$paging_version"
-
     // Room
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"

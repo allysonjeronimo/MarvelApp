@@ -2,18 +2,23 @@ package com.allysonjeronimo.marvelapp.data.db.dao
 
 import androidx.room.*
 import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCart
+import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartWithItems
 
 @Dao
 interface ShoppingCartDAO {
     @Insert
-    suspend fun insert(shoppingCart:ShoppingCart) : Long
+    fun insert(shoppingCart:ShoppingCart) : Long
 
     @Update
-    suspend fun update(shoppingCart: ShoppingCart)
+    fun update(shoppingCart: ShoppingCart)
 
     @Query("delete from ShoppingCart where id = :id")
-    suspend fun delete(id:Long)
+    fun delete(id:Long)
 
     @Query("select * from ShoppingCart where id = :id")
-    suspend fun find(id:Long)
+    fun find(id:Long) : ShoppingCart
+
+    @Transaction
+    @Query("select * from ShoppingCart where id = :id")
+    fun findWithItems(id:Long) : List<ShoppingCartWithItems>
 }

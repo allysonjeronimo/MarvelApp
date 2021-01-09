@@ -9,8 +9,8 @@ import com.allysonjeronimo.marvelapp.data.db.entity.Comic
 @Dao
 interface ComicDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(comics:List<Comic>)
+    fun insertAll(comics:List<Comic>)
 
     @Query("select * from Comic")
-    suspend fun findAll() : List<Comic>
+    fun findAll() : List<Comic>
 }

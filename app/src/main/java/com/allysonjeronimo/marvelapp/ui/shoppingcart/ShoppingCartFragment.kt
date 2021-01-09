@@ -1,14 +1,10 @@
 package com.allysonjeronimo.marvelapp.ui.shoppingcart
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.allysonjeronimo.marvelapp.R
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.shopping_cart_fragment.*
 
 class ShoppingCartFragment : Fragment(R.layout.shopping_cart_fragment) {

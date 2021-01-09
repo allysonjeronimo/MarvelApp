@@ -5,6 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class ShoppingCart(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id:Long
 )
