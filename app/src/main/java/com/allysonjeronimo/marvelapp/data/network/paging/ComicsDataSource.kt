@@ -2,24 +2,24 @@ package com.allysonjeronimo.marvelapp.data.network.paging
 
 import androidx.paging.PageKeyedDataSource
 import com.allysonjeronimo.marvelapp.data.network.MarvelApi
-import com.allysonjeronimo.marvelapp.data.network.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.entity.ComicData
 
 class ComicsDataSource(
     private val api:MarvelApi
-) : PageKeyedDataSource<Int, Comic>(){
+) : PageKeyedDataSource<Int, ComicData>(){
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, Comic>
+        callback: LoadInitialCallback<Int, ComicData>
     ) {
         TODO("Not yet implemented")
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Comic>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, ComicData>) {
         TODO("Not yet implemented")
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Comic>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, ComicData>) {
         TODO("Not yet implemented")
     }
 

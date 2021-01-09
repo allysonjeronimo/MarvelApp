@@ -1,6 +1,6 @@
 package com.allysonjeronimo.marvelapp.data.network.entity
 
-data class Response(
+data class ComicDataWrapper(
     val code:Int,
-    val data:Data
+    val data:ComicDataContainer
 )

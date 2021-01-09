@@ -1,14 +1,14 @@
 package com.allysonjeronimo.marvelapp.data.network.entity
 
-data class Comic(
+data class ComicData(
     val id:Int,
     val title:String,
     val description:String?,
     val pageCount:Int,
-    val thumbnail: Thumbnail,
-    val prices:List<Price>,
+    val thumbnail: Image,
+    val prices:List<ComicPrice>,
     val creators:CreatorList,
-    val issueNumber:String,
+    val issueNumber:Double,
 ){
 
     fun firstPrice() : Double{

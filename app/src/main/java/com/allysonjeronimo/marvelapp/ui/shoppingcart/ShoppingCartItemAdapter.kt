@@ -5,8 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.allysonjeronimo.marvelapp.R
-import com.allysonjeronimo.marvelapp.data.entity.ShoppingCartItem
-import com.allysonjeronimo.marvelapp.extensions.currencyFormat
+import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartItem
 import com.allysonjeronimo.marvelapp.extensions.load
 import kotlinx.android.synthetic.main.shopping_cart_item_item.view.*
 

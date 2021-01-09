@@ -1,10 +1,10 @@
 package com.allysonjeronimo.marvelapp.repository
 
-import com.allysonjeronimo.marvelapp.data.network.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.entity.ComicData
 
 interface MarvelRepository {
 
-    fun allComics(success:(List<Comic>) -> Unit, failure:() -> Unit)
+    fun allComics(success:(List<ComicData>) -> Unit, failure:() -> Unit)
 
-    fun findComic(id:Int, success: (Comic?) -> Unit, failure: () -> Unit)
+    fun findComic(id:Int, success: (ComicData?) -> Unit, failure: () -> Unit)
 }

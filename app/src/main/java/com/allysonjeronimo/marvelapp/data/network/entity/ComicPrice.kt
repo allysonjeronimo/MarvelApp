@@ -1,6 +1,6 @@
 package com.allysonjeronimo.marvelapp.data.network.entity
 
-data class Price(
+data class ComicPrice(
     val price:Double,
     val type:String
 )

@@ -5,20 +5,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.allysonjeronimo.marvelapp.R
-import com.allysonjeronimo.marvelapp.data.network.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.entity.ComicData
 import com.allysonjeronimo.marvelapp.repository.MarvelRepository
 
 class ComicDetailsViewModel(
     private val repository: MarvelRepository
 ) : ViewModel() {
 
-    private val comicLiveData = MutableLiveData<Comic>()
+    private val comicLiveData = MutableLiveData<ComicData>()
     private var isLoadingLiveData = MutableLiveData<Boolean>()
     private var errorMessageLiveData = MutableLiveData<Int>()
 
-    fun comicLiveData() = comicLiveData as LiveData<Comic>
+    fun comicLiveData() = comicLiveData as LiveData<ComicData>
     fun isLoadingsLiveData() = isLoadingLiveData as LiveData<Boolean>
     fun errorMessageLiveData() = errorMessageLiveData as LiveData<Int>
+    fun comic() = comicLiveData.value
 
     fun loadComic(comicId:Int){
         isLoadingLiveData.value = true

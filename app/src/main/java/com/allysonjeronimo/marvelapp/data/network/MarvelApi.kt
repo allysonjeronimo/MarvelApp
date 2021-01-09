@@ -1,6 +1,6 @@
 package com.allysonjeronimo.marvelapp.data.network
 
-import com.allysonjeronimo.marvelapp.data.network.entity.Response
+import com.allysonjeronimo.marvelapp.data.network.entity.ComicDataWrapper
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,7 +14,7 @@ interface MarvelApi {
         @Query("ts") timeStamp:String,
         @Query("apikey") apiKey:String,
         @Query("hash") hash:String
-    ) : Call<Response>
+    ) : Call<ComicDataWrapper>
 
     @GET("comics/{comicId}")
     fun findComic(
@@ -22,6 +22,6 @@ interface MarvelApi {
         @Query("ts") timeStamp:String,
         @Query("apikey") apiKey:String,
         @Query("hash") hash:String
-    ) : Call<Response>
+    ) : Call<ComicDataWrapper>
 
 }

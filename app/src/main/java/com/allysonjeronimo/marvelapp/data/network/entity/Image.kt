@@ -1,6 +1,6 @@
 package com.allysonjeronimo.marvelapp.data.network.entity
 
-data class Thumbnail(
+data class Image(
     val path:String,
     val extension:String
 )

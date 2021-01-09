@@ -7,7 +7,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.allysonjeronimo.marvelapp.R
-import com.allysonjeronimo.marvelapp.data.network.entity.Comic
+import com.allysonjeronimo.marvelapp.data.network.entity.ComicData
 import com.allysonjeronimo.marvelapp.data.network.BASE_URL
 import com.allysonjeronimo.marvelapp.data.network.MarvelApi
 import com.allysonjeronimo.marvelapp.extensions.navigateWithAnimations
@@ -60,7 +60,7 @@ class ComicListFragment : Fragment(R.layout.comic_list_fragment) {
         })
     }
 
-    private fun onClickListener(comic: Comic){
+    private fun onClickListener(comic: ComicData){
         val bundle = bundleOf("comicId" to comic.id)
         findNavController().navigateWithAnimations(R.id.comicDetailsFragment, bundle)
     }
