@@ -7,55 +7,121 @@
     tools:context=".ui.shoppingcart.ShoppingCartFragment"
     android:padding="12dp">
 
-    <FrameLayout
-        android:id="@+id/view_subtotal"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_subtotal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorLightGrayAlt"
+        android:text="@string/shopping_cart_subtotal"
+        android:textSize="16sp"
+        android:textColor="@color/colorGray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="16dp"
+        android:layout_marginTop="12dp"
+        />
+
+    <TextView
+        android:id="@+id/text_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shopping_cart_discount"
+        android:textSize="16sp"
+        android:textColor="@color/colorAmberDark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_subtotal"
+        />
+
+    <TextView
+        android:id="@+id/text_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shopping_cart_total"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorGrayAlt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_discount"
+        />
+
+    <TextView
+        android:id="@+id/text_subtotal_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="US$ 0,00"
+        android:textSize="16sp"
+        android:textColor="@color/colorGray"
+        android:layout_gravity="right"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"
+        />
+
+    <TextView
+        android:id="@+id/text_discount_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="US$ 0,00"
+        android:textSize="16sp"
+        android:textColor="@color/colorAmberDark"
+        android:layout_gravity="right"
+        app:layout_constraintTop_toBottomOf="@+id/text_subtotal_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/text_total_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="US$ 0,00"
+        android:textSize="16sp"
+        android:textColor="@color/colorGrayAlt"
+        android:textStyle="bold"
+        android:layout_gravity="right"
+        app:layout_constraintTop_toBottomOf="@+id/text_discount_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_discount_code"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/text_total_value"
+        android:layout_marginTop="12dp"
         >
 
-        <TextView
-            android:id="@+id/text_subtotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/shopping_cart_subtotal"
-            android:textSize="16sp"
-            android:textColor="@color/colorGray"
-            />
-
-        <TextView
-            android:id="@+id/text_subtotal_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="US$ 0,00"
-            android:textSize="28sp"
-            android:textColor="@color/colorGrayAlt"
-            android:textStyle="bold"
-            android:layout_gravity="right"
-            />
-
-        <View
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_discount_code"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorPrimaryDark"
-            android:layout_gravity="bottom"
-            />
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            android:drawableTint="@color/colorGray"
+            android:textColor="@color/colorGray"
+            android:focusable="true"
+            android:maxLength="12"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:hint="@string/shopping_cart_discount_code"
+            android:textAlignment="textStart"
+            >
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button_shopping_cart_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_button_red"
+        android:background="@drawable/selector_button_amber"
         android:text="@string/shopping_cart_checkout"
         android:textSize="18sp"
         android:textColor="#fff"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_subtotal"
+        app:layout_constraintTop_toBottomOf="@+id/text_layout_discount_code"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -79,10 +145,11 @@
         android:src="@drawable/ic_shopping_cart"
         android:layout_gravity="center"
         app:tint="@color/colorLightGrayAlt"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_shopping_cart_action"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"
         />
 
     <TextView

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageButton
+            android:id="@+id/button_decrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button_gray"
+            android:src="@drawable/ic_arrow_left"
+            android:padding="8dp"
+            android:layout_weight="0"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:tint="@color/colorGrayAlt"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:inputType="number"
+                    android:textColor="@color/colorGray"
+                    android:focusable="false"
+                    android:maxLength="2"
+                    android:textSize="16sp"
+                    android:padding="8dp"
+                    android:maxLines="1"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="1"
+                    >
+                </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <ImageButton
+            android:id="@+id/button_increase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button_gray"
+            android:src="@drawable/ic_arrow_right"
+            android:tint="@color/colorGrayAlt"
+            android:padding="8dp"
+            android:layout_weight="0"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            />
+
+</LinearLayout>
+

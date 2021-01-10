@@ -14,5 +14,6 @@ data class Comic(
     val thumbnailExtension:String,
     val price:Double,
     val creators:String,
-    val issueNumber:Int
+    val issueNumber:Int,
+    var rare:Boolean
 )

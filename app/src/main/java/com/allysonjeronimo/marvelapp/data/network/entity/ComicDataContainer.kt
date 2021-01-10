@@ -20,7 +20,8 @@ data class ComicDataContainer(
                 thumbnailExtension = comicData.thumbnail.extension,
                 price = comicData.firstPrice(),
                 creators = comicData.creators.creatorsString(),
-                issueNumber = comicData.issueNumber
+                issueNumber = comicData.issueNumber,
+                rare = false
             )
         }
     }

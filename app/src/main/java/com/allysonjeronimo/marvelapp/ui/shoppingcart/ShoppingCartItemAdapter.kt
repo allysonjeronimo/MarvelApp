@@ -14,7 +14,8 @@ import kotlin.concurrent.schedule
 
 class ShoppingCartItemAdapter(
     private val items:List<ShoppingCartItem>,
-    private val onItemRemoveListener:(ShoppingCartItem) -> Unit
+    private val onItemRemoveListener:(ShoppingCartItem) -> Unit,
+    private val onItemClickListener: (ShoppingCartItem) -> Unit
     ) : RecyclerView.Adapter<ShoppingCartItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,6 +28,9 @@ class ShoppingCartItemAdapter(
         holder.bind(items[position])
         holder.itemView.button_delete.setOnClickListener {
             removeItem(position)
+        }
+        holder.itemView.setOnClickListener {
+            onItemClickListener(items[position])
         }
     }
 

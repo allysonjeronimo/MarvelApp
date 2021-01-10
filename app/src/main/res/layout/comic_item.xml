@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="6dp"
     android:orientation="vertical"
-    android:background="@color/colorLightGrayAlt"
+    android:background="@color/colorLightGray"
     android:clickable="true"
     android:focusable="true"
     >
@@ -23,13 +23,40 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             >
+
             <ImageView
                 android:id="@+id/image_cover"
-                android:layout_width="150dp"
-                android:layout_height="225dp"
+                android:layout_width="142dp"
+                android:layout_height="213dp"
                 tools:src="@drawable/placeholder"
                 android:layout_gravity="center"
                 />
+
+            <View
+                android:id="@+id/view_border_image"
+                android:layout_width="142dp"
+                android:layout_height="213dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_border_amber"
+                />
+
+            <LinearLayout
+                android:id="@+id/view_rare"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="right|top"
+                android:background="@drawable/shape_oval_amber"
+                android:orientation="vertical"
+                android:padding="7dp"
+                android:layout_margin="6dp"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_jewel"
+                    />
+            </LinearLayout>
+
         </FrameLayout>
 
         <TextView
@@ -52,27 +79,5 @@
             />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_gravity="right|bottom"
-        android:background="@drawable/shape_rounded_top_left_red"
-        android:orientation="vertical"
-        android:padding="7dp"
-        >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_jewel"
-            />
-    </LinearLayout>
-
-    <View
-        android:background="@color/colorPrimaryDark"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_gravity="right|bottom"
-        />
 
 </FrameLayout>

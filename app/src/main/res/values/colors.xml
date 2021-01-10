@@ -2,12 +2,13 @@
 <resources>
     <color name="colorPrimary">#d32f2f</color>
     <color name="colorPrimaryDark">#b71c1c</color>
-    <color name="colorAccent">#03DAC5</color>
-
+    <color name="colorAccent">@color/colorAmber</color>
     <color name="colorLightGray">#f5f5f5</color>
     <color name="colorLightGrayAlt">#eeeeee</color>
     <color name="colorGray">#bdbdbd</color>
     <color name="colorGrayAlt">#757575</color>
     <color name="colorDarkGray">#424242</color>
     <color name="colorBlack">#212121</color>
+    <color name="colorAmber">#ffc107</color>
+    <color name="colorAmberDark">#ffa000</color>
 </resources>

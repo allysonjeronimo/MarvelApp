@@ -17,6 +17,7 @@ import com.allysonjeronimo.marvelapp.extensions.navigateWithAnimations
 import com.allysonjeronimo.marvelapp.repository.MarvelDataRepository
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.comic_details_fragment.*
+import kotlinx.android.synthetic.main.quantity_picker.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -29,17 +30,6 @@ class ComicDetailsFragment : Fragment(R.layout.comic_details_fragment) {
         createViewModel()
         observeEvents()
         setListeners()
-    }
-
-    private fun setListeners() {
-        button_add.setOnClickListener {
-            val comic = viewModel.comic()
-            if(comic != null){
-                val item = ShoppingCartItem(comic.id, comic, 1)
-                viewModel.addShoppingCartItem(item)
-                findNavController().navigateWithAnimations(R.id.shoppingCartFragment)
-            }
-        }
     }
 
     private fun createViewModel() {
@@ -62,7 +52,7 @@ class ComicDetailsFragment : Fragment(R.layout.comic_details_fragment) {
 
     private fun observeEvents() {
         viewModel.comicLiveData().observe(this.viewLifecycleOwner, {
-            comic -> showComicDetails(comic)
+                comic -> showComicDetails(comic)
         })
         viewModel.isLoadingsLiveData().observe(this.viewLifecycleOwner, {isLoading ->
             if(isLoading)
@@ -71,19 +61,9 @@ class ComicDetailsFragment : Fragment(R.layout.comic_details_fragment) {
                 hideProgress()
         })
         viewModel.errorMessageLiveData().observe(this.viewLifecycleOwner, {
-            stringResource ->
+                stringResource ->
             Snackbar.make(requireView(), stringResource, Snackbar.LENGTH_SHORT).show()
         })
-    }
-
-    private fun hideProgress() {
-        progress_bar.visibility = View.GONE
-        view_details.visibility = View.VISIBLE
-    }
-
-    private fun showProgress() {
-        progress_bar.visibility = View.VISIBLE
-        view_details.visibility = View.GONE
     }
 
     private fun showComicDetails(comic: Comic) {
@@ -94,12 +74,52 @@ class ComicDetailsFragment : Fragment(R.layout.comic_details_fragment) {
         text_summary.text = comic.description ?: resources.getString(R.string.comic_detauls_text_not_found)
         button_add.text = comic.price.currencyFormat().toString()
         image_detail_cover.load("${comic.thumbnailPath}/portrait_fantastic.${comic.thumbnailExtension}")
+        if(comic.rare){
+            view_rare.visibility = View.VISIBLE
+        }
+        else{
+            view_rare.visibility = View.GONE
+        }
+    }
+
+    private fun showProgress() {
+        progress_bar.visibility = View.VISIBLE
+        view_details.visibility = View.GONE
+    }
+
+    private fun hideProgress() {
+        progress_bar.visibility = View.GONE
+        view_details.visibility = View.VISIBLE
+    }
+
+    private fun setListeners() {
+        button_add.setOnClickListener {
+            val comic = viewModel.comic()
+            if(comic != null){
+                val item = ShoppingCartItem(comic.id, comic, text_quantity.text.toString().toInt())
+                viewModel.addShoppingCartItem(item)
+                findNavController().navigateWithAnimations(R.id.shoppingCartFragment)
+            }
+        }
+        button_decrease.setOnClickListener {
+            var value = text_quantity.text.toString().toInt()
+            if(value > 1){
+                value--
+                text_quantity.setText(value.toString())
+            }
+        }
+        button_increase.setOnClickListener {
+            var value = text_quantity.text.toString().toInt()
+            if(value < 10){
+                value++
+                text_quantity.setText(value.toString())
+            }
+        }
     }
 
     override fun onStart() {
         super.onStart()
         viewModel.loadComic(arguments?.getInt("comicId") ?: 0)
     }
-
 
 }
