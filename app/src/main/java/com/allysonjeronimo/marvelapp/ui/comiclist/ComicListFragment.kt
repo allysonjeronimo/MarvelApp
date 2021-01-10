@@ -7,11 +7,12 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.allysonjeronimo.marvelapp.R
+import com.allysonjeronimo.marvelapp.data.db.AppDatabase
 import com.allysonjeronimo.marvelapp.data.db.entity.Comic
 import com.allysonjeronimo.marvelapp.data.network.BASE_URL
 import com.allysonjeronimo.marvelapp.data.network.MarvelApi
 import com.allysonjeronimo.marvelapp.extensions.navigateWithAnimations
-import com.allysonjeronimo.marvelapp.repository.ComicDataRepository
+import com.allysonjeronimo.marvelapp.repository.MarvelDataRepository
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.comic_list_fragment.*
 import retrofit2.Retrofit
@@ -28,13 +29,16 @@ class ComicListFragment : Fragment(R.layout.comic_list_fragment) {
     }
 
     private fun createViewModel(){
-        val retrofit = Retrofit
+        val api = Retrofit
             .Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(MarvelApi::class.java)
 
-        val repository = ComicDataRepository(retrofit.create(MarvelApi::class.java))
+        val database = AppDatabase.getInstance(requireContext())
+
+        val repository = MarvelDataRepository(api, database)
 
         viewModel = ViewModelProvider(
             this,

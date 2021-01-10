@@ -5,15 +5,15 @@ import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartItem
 
 @Dao
 interface ShoppingCartItemDAO {
-    @Insert
-    fun insert(shoppingCartItem: ShoppingCartItem) : Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(shoppingCartItem: ShoppingCartItem) : Long
 
     @Update
-    fun update(shoppingCartItem: ShoppingCartItem)
+    suspend fun update(shoppingCartItem: ShoppingCartItem)
 
     @Query("delete from ShoppingCartItem where id = :id")
-    fun delete(id:Long)
+    suspend fun delete(id:Int)
 
-    @Query("select * from ShoppingCartItem where shoppingCartId = :shoppingCartId")
-    fun findByShoppingCart(shoppingCartId:Long) : List<ShoppingCartItem>
+    @Query("select * from ShoppingCartItem")
+    suspend fun findAll() : List<ShoppingCartItem>
 }

@@ -1,26 +1,37 @@
 package com.allysonjeronimo.marvelapp.ui.shoppingcart
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartItem
 import com.allysonjeronimo.marvelapp.extensions.notifyObserver
+import com.allysonjeronimo.marvelapp.repository.MarvelRepository
+import kotlinx.coroutines.launch
 
-class ShoppingCartViewModel : ViewModel() {
+class ShoppingCartViewModel(
+    private val repository: MarvelRepository
+) : ViewModel() {
 
     private val shoppingCartItemsLiveData = MutableLiveData<List<ShoppingCartItem>>()
 
     fun shoppingCartItemsLiveData() = shoppingCartItemsLiveData as LiveData<List<ShoppingCartItem>>
 
-    fun addItem(shoppingCartItem: ShoppingCartItem){
-        shoppingCartItemsLiveData.value?.toMutableList()?.add(shoppingCartItem)
-        shoppingCartItemsLiveData.notifyObserver()
+    fun isEmpty(): Boolean{
+        return shoppingCartItemsLiveData.value?.isEmpty() ?: true
     }
 
-    class ShoppingCartViewModelFactory : ViewModelProvider.Factory{
+    fun loadItems() = viewModelScope.launch{
+        shoppingCartItemsLiveData.value = repository.allShoppingCartItems()
+    }
+
+    fun removeItem(item:ShoppingCartItem) = viewModelScope.launch {
+        repository.deleteShoppingCartItem(item)
+        loadItems()
+    }
+
+    class ShoppingCartViewModelFactory(
+        private val repository: MarvelRepository
+    ) : ViewModelProvider.Factory{
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return ShoppingCartViewModel() as T
+            return ShoppingCartViewModel(repository) as T
         }
     }
 

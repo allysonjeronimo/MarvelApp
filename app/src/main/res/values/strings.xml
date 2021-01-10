@@ -15,10 +15,14 @@
     <string name="comic_detauls_text_not_found">Not found</string>
     <string name="comic_details_error_not_found">Selected comic not found</string>
     <string name="comic_details_error_on_loading">There was an error when loading the selected comic</string>
+    <string name="comic_details_error_on_add">Error when adding to shopping cart</string>
 
     <!-- ShoppingCartFragment -->
     <string name="shopping_cart_title">Shopping Cart</string>
     <string name="shopping_cart_subtotal">Subtotal: (%s items)</string>
     <string name="shopping_cart_checkout">Proceed to checkout</string>
+    <string name="shopping_cart_continue_shopping">Continue shopping</string>
+    <string name="shopping_cart_delete">Delete</string>
+    <string name="shopping_cart_text_empty">Your shopping cart is empty.</string>
 
 </resources>

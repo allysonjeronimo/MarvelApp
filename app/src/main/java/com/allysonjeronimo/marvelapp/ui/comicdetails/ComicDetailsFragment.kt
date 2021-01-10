@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.allysonjeronimo.marvelapp.R
+import com.allysonjeronimo.marvelapp.data.db.AppDatabase
 import com.allysonjeronimo.marvelapp.data.db.entity.Comic
+import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartItem
 import com.allysonjeronimo.marvelapp.data.network.BASE_URL
 import com.allysonjeronimo.marvelapp.data.network.MarvelApi
 import com.allysonjeronimo.marvelapp.extensions.currencyFormat
 import com.allysonjeronimo.marvelapp.extensions.load
-import com.allysonjeronimo.marvelapp.repository.ComicDataRepository
+import com.allysonjeronimo.marvelapp.extensions.navigateWithAnimations
+import com.allysonjeronimo.marvelapp.repository.MarvelDataRepository
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.comic_details_fragment.*
 import retrofit2.Retrofit
@@ -31,20 +35,24 @@ class ComicDetailsFragment : Fragment(R.layout.comic_details_fragment) {
         button_add.setOnClickListener {
             val comic = viewModel.comic()
             if(comic != null){
-                //val item = ShoppingCartItem(comic, 1)
-                // save on db
+                val item = ShoppingCartItem(comic.id, comic, 1)
+                viewModel.addShoppingCartItem(item)
+                findNavController().navigateWithAnimations(R.id.shoppingCartFragment)
             }
         }
     }
 
     private fun createViewModel() {
-        val retrofit = Retrofit
+        val api = Retrofit
             .Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(MarvelApi::class.java)
 
-        val repository = ComicDataRepository(retrofit.create(MarvelApi::class.java))
+        val database = AppDatabase.getInstance(requireContext())
+
+        val repository = MarvelDataRepository(api, database)
 
         viewModel = ViewModelProvider(
             this,

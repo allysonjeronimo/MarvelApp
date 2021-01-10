@@ -46,7 +46,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/button_checkout"
+        android:id="@+id/button_shopping_cart_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_button_red"
@@ -59,15 +59,51 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
+        android:scrollbars="vertical"
         android:id="@+id/recycler_view_items"
         android:layout_marginTop="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_checkout"
+        app:layout_constraintTop_toBottomOf="@id/button_shopping_cart_action"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/shopping_cart_item_item"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
+    <ImageView
+        android:id="@+id/image_shopping_cart"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/ic_shopping_cart"
+        android:layout_gravity="center"
+        app:tint="@color/colorLightGrayAlt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
+    <TextView
+        android:id="@+id/text_shopping_cart_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/image_shopping_cart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/shopping_cart_text_empty"
+        android:textSize="18sp"
+        android:textColor="@color/colorGray"
+        android:layout_marginTop="12dp"
+        />
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="image_shopping_cart,text_shopping_cart_empty"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

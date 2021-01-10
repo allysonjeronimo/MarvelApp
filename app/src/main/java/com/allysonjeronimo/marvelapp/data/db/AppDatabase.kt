@@ -5,20 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.allysonjeronimo.marvelapp.data.db.dao.ComicDAO
-import com.allysonjeronimo.marvelapp.data.db.dao.ShoppingCartDAO
 import com.allysonjeronimo.marvelapp.data.db.dao.ShoppingCartItemDAO
 import com.allysonjeronimo.marvelapp.data.db.entity.Comic
-import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCart
 import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartItem
 
 @Database(
-    entities = [Comic::class, ShoppingCart::class, ShoppingCartItem::class],
+    entities = [Comic::class, ShoppingCartItem::class],
     version = 1
 )
 abstract class AppDatabase : RoomDatabase(){
 
     abstract fun ComicDAO() : ComicDAO
-    abstract fun ShoppingCartDAO() : ShoppingCartDAO
     abstract fun ShoppingCartItemDAO() : ShoppingCartItemDAO
 
     companion object{

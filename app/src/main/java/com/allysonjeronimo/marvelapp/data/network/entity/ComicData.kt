@@ -8,7 +8,7 @@ data class ComicData(
     val thumbnail: Image,
     val prices:List<ComicPrice>,
     val creators:CreatorList,
-    val issueNumber:Double,
+    val issueNumber:Int,
 ){
 
     fun firstPrice() : Double{
