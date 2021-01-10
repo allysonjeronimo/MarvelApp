@@ -32,6 +32,8 @@ const val PRIVATE_KEY = ""
 - Há dois tipos de Cupons de Descontos (Comum e Raro). Cupons comuns permitem desconto de 10% em
 quadrinhos comuns, enquanto que Cupons Raros adicionam desconto de 25% em todos os quadrinhos.
 
+- Quadrinhos Raros possuem ícone de uma jóia e bordas douradas na tela de listagem.
+
 - Após adicionar itens no carrinho, utilizar algum dos seguintes códigos: 
 
 123456 (Cupom Comum)
