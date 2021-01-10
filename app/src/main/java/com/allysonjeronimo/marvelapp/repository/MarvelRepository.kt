@@ -14,4 +14,8 @@ interface MarvelRepository {
     suspend fun deleteShoppingCartItem(shoppingCartItem: ShoppingCartItem)
 
     suspend fun allShoppingCartItems() : List<ShoppingCartItem>
+
+    suspend fun checkAndApplyDiscount(code:String)
+
+    suspend fun processCheckout()
 }

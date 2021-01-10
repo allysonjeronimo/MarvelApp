@@ -12,9 +12,15 @@ data class ShoppingCartItem(
     val id:Int,
     @Embedded(prefix = "comic_")
     val comic:Comic,
-    val quantity:Int
+    val quantity:Int,
+    val value:Double,
+    val discount:Double = 0.0
 ){
     fun subtotal() : Double{
-        return comic.price * quantity
+        return value * quantity
+    }
+
+    fun subtotalWithDiscount() : Double{
+        return (value-(value*discount)) * quantity
     }
 }

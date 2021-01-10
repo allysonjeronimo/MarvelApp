@@ -27,6 +27,12 @@
         android:name="com.allysonjeronimo.marvelapp.ui.shoppingcart.ShoppingCartFragment"
         android:label="@string/shopping_cart_title"
         tools:layout="@layout/shopping_cart_fragment"/>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.allysonjeronimo.marvelapp.ui.checkout.CheckoutFragment"
+        android:label="@string/checkout_title"
+        tools:layout="@layout/checkout_fragment"
+        />
 
 
 </navigation>

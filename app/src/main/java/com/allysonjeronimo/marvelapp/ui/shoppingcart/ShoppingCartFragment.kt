@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
@@ -16,8 +17,10 @@ import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartItem
 import com.allysonjeronimo.marvelapp.data.network.BASE_URL
 import com.allysonjeronimo.marvelapp.data.network.MarvelApi
 import com.allysonjeronimo.marvelapp.extensions.currencyFormat
+import com.allysonjeronimo.marvelapp.extensions.hideKeyboard
 import com.allysonjeronimo.marvelapp.extensions.navigateWithAnimations
 import com.allysonjeronimo.marvelapp.repository.MarvelDataRepository
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.shopping_cart_fragment.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -66,6 +69,10 @@ class ShoppingCartFragment : Fragment(R.layout.shopping_cart_fragment) {
             }
             showShoppingCartDetails(items)
         })
+        viewModel.messageLiveData().observe(this.viewLifecycleOwner, {
+            stringResource ->
+            Snackbar.make(requireView(), stringResource, Snackbar.LENGTH_SHORT).show()
+        })
     }
 
     private fun showShoppingCartItems(items:List<ShoppingCartItem>){
@@ -94,10 +101,13 @@ class ShoppingCartFragment : Fragment(R.layout.shopping_cart_fragment) {
 
     private fun showShoppingCartDetails(items:List<ShoppingCartItem>){
         val quantityItems = items.map { it.quantity }.sum()
-        val subtotal = items.map { it.subtotal() }.sum().currencyFormat()
-        text_subtotal_value.text = subtotal
+        val subtotal = items.map { it.subtotal() }.sum()
+        val total = items.map { it.subtotalWithDiscount() }.sum()
+        val discount = subtotal-total
+        text_subtotal_value.text = subtotal.currencyFormat()
         text_total.text = resources.getString(R.string.shopping_cart_total, quantityItems.toString())
-        text_total_value.text = subtotal
+        text_discount_value.text = discount.currencyFormat()
+        text_total_value.text = total.currencyFormat()
         button_shopping_cart_action.text =
             if(viewModel.isEmpty())
                 resources.getString(R.string.shopping_cart_continue_shopping)
@@ -113,7 +123,8 @@ class ShoppingCartFragment : Fragment(R.layout.shopping_cart_fragment) {
                 findNavController().navigateWithAnimations(R.id.comicListFragment)
             }
             else{
-                // checkout!
+                viewModel.processCheckout()
+                findNavController().navigateWithAnimations(R.id.checkoutFragment)
             }
         }
 
@@ -144,8 +155,22 @@ class ShoppingCartFragment : Fragment(R.layout.shopping_cart_fragment) {
     }
 
     private fun checkDiscount(){
-        val discountCode = text_discount_code.text
+        val discountCode = text_discount_code.text.toString()
+        viewModel.checkAndApplyDiscount(discountCode)
+        clearFields()
+        hideKeyboard()
+    }
 
+    private fun clearFields(){
+        text_discount_code.text?.clear()
+        text_discount_code.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
+    }
+
+    private fun hideKeyboard(){
+        val activity = requireActivity()
+        if(activity is AppCompatActivity){
+            activity.hideKeyboard()
+        }
     }
 
     override fun onStart() {

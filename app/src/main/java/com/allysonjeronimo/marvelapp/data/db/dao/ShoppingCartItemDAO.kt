@@ -11,8 +11,17 @@ interface ShoppingCartItemDAO {
     @Update
     suspend fun update(shoppingCartItem: ShoppingCartItem)
 
+    @Query("update ShoppingCartItem set discount = :discount")
+    suspend fun applyRareDiscount(discount:Double)
+
+    @Query("update ShoppingCartItem set discount = :discount where comic_rare = 0")
+    suspend fun applyCommonDiscount(discount:Double)
+
     @Query("delete from ShoppingCartItem where id = :id")
     suspend fun delete(id:Int)
+
+    @Query("delete from ShoppingCartItem")
+    suspend fun deleteAll()
 
     @Query("select * from ShoppingCartItem")
     suspend fun findAll() : List<ShoppingCartItem>

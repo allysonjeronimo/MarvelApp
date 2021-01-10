@@ -1,7 +1,10 @@
 package com.allysonjeronimo.marvelapp.repository
 
+import com.allysonjeronimo.marvelapp.R
 import com.allysonjeronimo.marvelapp.data.db.AppDatabase
 import com.allysonjeronimo.marvelapp.data.db.entity.Comic
+import com.allysonjeronimo.marvelapp.data.db.entity.DiscountCode
+import com.allysonjeronimo.marvelapp.data.db.entity.DiscountType
 import com.allysonjeronimo.marvelapp.data.db.entity.ShoppingCartItem
 import com.allysonjeronimo.marvelapp.data.network.MarvelApi
 import com.allysonjeronimo.marvelapp.data.network.PRIVATE_KEY
@@ -19,6 +22,14 @@ class MarvelDataRepository(
 
     private val comicDAO = database.ComicDAO()
     private val shoppingCartItemDAO = database.ShoppingCartItemDAO()
+
+    /**
+     * Mocks de Cupons de Desconto
+     */
+    private val discountCodes = listOf<DiscountCode>(
+        DiscountCode(1, "123456", DiscountType(1, "Common", false, 0.1)),
+        DiscountCode(2, "654321", DiscountType(2, "Rare", true, 0.25))
+    )
 
     /**
      * Define randomicamente quais as comics
@@ -80,4 +91,22 @@ class MarvelDataRepository(
     override suspend fun allShoppingCartItems(): List<ShoppingCartItem> {
         return shoppingCartItemDAO.findAll()
     }
+
+    override suspend fun checkAndApplyDiscount(code: String) {
+        val discountCode = discountCodes.find { it -> it.code == code }
+        if(discountCode != null){
+            if(discountCode.type.rare)
+                shoppingCartItemDAO.applyRareDiscount(discountCode.type.discount)
+            else
+                shoppingCartItemDAO.applyCommonDiscount(discountCode.type.discount)
+        }
+        else{
+            throw IllegalArgumentException()
+        }
+    }
+
+    override suspend fun processCheckout() {
+        shoppingCartItemDAO.deleteAll()
+    }
+
 }

@@ -96,7 +96,7 @@ class ComicDetailsFragment : Fragment(R.layout.comic_details_fragment) {
         button_add.setOnClickListener {
             val comic = viewModel.comic()
             if(comic != null){
-                val item = ShoppingCartItem(comic.id, comic, text_quantity.text.toString().toInt())
+                val item = ShoppingCartItem(comic.id, comic, text_quantity.text.toString().toInt(), comic.price)
                 viewModel.addShoppingCartItem(item)
                 findNavController().navigateWithAnimations(R.id.shoppingCartFragment)
             }
