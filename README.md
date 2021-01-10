@@ -19,11 +19,13 @@ App Android nativo em desenvolvimento que simula uma loja online de quadrinhos d
 ### Executar projeto
 
 - Realizar cadastro na página de desenvolvedores da Marvel e obter as credenciais de aceso da [API](https://developer.marvel.com/).
-- Modificar arquivo [Constants.kt](https://github.com/allysonjeronimo/MarvelApp/blob/master/app/src/main/java/com/allysonjeronimo/marvelapp/data/network/Constants.kt) do projeto com os dados fornecidos (PuBLIC_KEY e PRIVATE_KEY)
+- Modificar arquivo [Constants.kt](https://github.com/allysonjeronimo/MarvelApp/blob/master/app/src/main/java/com/allysonjeronimo/marvelapp/data/network/Constants.kt) do projeto com os dados fornecidos (PUBLIC_KEY e PRIVATE_KEY)
 
+```
 const val BASE_URL = "https://gateway.marvel.com/v1/public/"
 const val PUBLIC_KEY = ""
 const val PRIVATE_KEY = ""
+```
 
 ### Aplicar descontos
 
