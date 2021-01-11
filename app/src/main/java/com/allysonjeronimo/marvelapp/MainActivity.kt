@@ -12,7 +12,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import kotlinx.android.synthetic.main.toolbar.*
 
-
+/**
+ * A App possui uma única Activity como ponto de entrada.
+ * A classe define configurações da Toolbar e do componente
+ * Navigation.
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController

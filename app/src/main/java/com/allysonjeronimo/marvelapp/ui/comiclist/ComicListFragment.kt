@@ -28,6 +28,9 @@ class ComicListFragment : Fragment(R.layout.comic_list_fragment) {
         observeEvents()
     }
 
+    /**
+     * Será utilizado Injeção de Dependências com Koin
+     */
     private fun createViewModel(){
         val api = Retrofit
             .Builder()

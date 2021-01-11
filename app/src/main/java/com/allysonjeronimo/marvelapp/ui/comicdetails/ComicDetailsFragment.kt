@@ -32,6 +32,9 @@ class ComicDetailsFragment : Fragment(R.layout.comic_details_fragment) {
         setListeners()
     }
 
+    /**
+     * Será utilizado Injeção de Dependências com Koin
+     */
     private fun createViewModel() {
         val api = Retrofit
             .Builder()

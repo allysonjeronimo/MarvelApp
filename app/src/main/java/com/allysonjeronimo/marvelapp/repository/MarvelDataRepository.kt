@@ -1,6 +1,5 @@
 package com.allysonjeronimo.marvelapp.repository
 
-import com.allysonjeronimo.marvelapp.R
 import com.allysonjeronimo.marvelapp.data.db.AppDatabase
 import com.allysonjeronimo.marvelapp.data.db.entity.Comic
 import com.allysonjeronimo.marvelapp.data.db.entity.DiscountCode
@@ -15,6 +14,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
 
+/**
+ * Algumas operações são delegadas para os respectivos DAOs
+ * ou para o service da api da Marvel. No entanto, as operações
+ * de definiação de quais quadrinhos são considerados raros bem
+ * como a consulta dos códigos de desconto são implementadas em
+ * métodos privados que simulam a lógica.
+ */
 class MarvelDataRepository(
     private val api: MarvelApi,
     private val database: AppDatabase
@@ -105,6 +111,11 @@ class MarvelDataRepository(
         }
     }
 
+    /**
+     * Não é gerado um pedido de fato, apenas
+     * são removidos os itens criados temporariamente
+     * no "carrinho de compras".
+     */
     override suspend fun processCheckout() {
         shoppingCartItemDAO.deleteAll()
     }
